@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/*") // 컨트롤러 메서드와 html을 매핑하는 역할
 public class InterceptorController {
 
-    @GetMapping("/re")
+    @GetMapping("input")
     public String handlerMethod() {
 
         return "result";
