@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Entity(name="board")
-@Table (name="posts")
+@Entity(name="posts")
+@Table
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

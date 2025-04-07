@@ -1,28 +1,48 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Post;
+import com.example.demo.Model.PostEntity;
+import com.example.demo.dto.PostDTO;
+import com.example.demo.service.PostService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
+@RequestMapping("/sub")
+@RequiredArgsConstructor
 public class PostController {
 
-    @PostMapping("/posts")
-    public ResponseEntity<Post> creatPost(@RequestBody Post post)
-    {
-        Post savedPost = PostService.creatPost(post);
+    private final PostService postService;
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedPost);
+
+
+    @GetMapping("/list")
+    public  String findPostList(Model model) {
+        List<PostDTO> postList = postService.findAllPost();
+
+        model.addAttribute("postList",postList);
+
+        return "sub/list";
     }
 
-    @GetMapping("/posts/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable("id") Long postId){
-        Post post = postService.getPostById(postId);
-        return ResponseEntity.ok(post);
+    @PostMapping("/posts") //게시글 생성
+    public String createPost(@ModelAttribute PostDTO createPost) {
+        postService.savePost(createPost);
+
+        return "sub/posts";
     }
+
+
+
+
+
+
+
+
 }

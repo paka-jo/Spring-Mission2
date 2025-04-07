@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <h2> 게시판 </h2>
+    <tr>
+        <th>NO.</th>
+        <th>게시글 제목</th>
+        <th>작성자</th>
+        <th>작성 시간</th>
+    </tr>
+    <tr th:each="post : ${ postList }">
+        <th th:text="${ post.postId }"></th>
+        <th th:text="${ post.posttitle }"></th>
+        <th th:text="${ post.postNickname }"></th>
+        <th th:text="${ post.postCreatedAt }"></th>
+    </tr>
+</table>
+<button onclick="createPost()">게시글 작성</button>
+</body>
+</html>

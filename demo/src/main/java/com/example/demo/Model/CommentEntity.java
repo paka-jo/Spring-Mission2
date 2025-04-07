@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Table(name="comments")
+@Entity(name="comments")
+@Table
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -16,9 +16,9 @@ import lombok.Setter;
 public class CommentEntity {
 
     @Id
-    @Column(name="post_code")
+    @Column(name="comment_code")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long postCode;
+    private long commentCode;
 
 
     @Column(name="page_id") // 회원 아이디

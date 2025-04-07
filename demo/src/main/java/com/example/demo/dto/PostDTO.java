@@ -1,5 +1,7 @@
 package com.example.demo.dto;
 
+import com.example.demo.Model.PostEntity;
+
 import java.time.LocalDateTime;
 
 public class PostDTO {
@@ -10,7 +12,7 @@ public class PostDTO {
     private String nickname;
     private LocalDateTime createdAt;
 
-    public PostDTO() {
+    public PostDTO(PostEntity savedPost) {
     }
 
     public Long getId() {
