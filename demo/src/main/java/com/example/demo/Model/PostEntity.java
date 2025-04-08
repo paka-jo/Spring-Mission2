@@ -1,5 +1,7 @@
 package com.example.demo.Model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,7 +37,9 @@ public class PostEntity {
     @Column(name="page_nickname")
     private String pageNickname;
 
+    // postcreatat 필드를 JOSN으로 직렬화 할 때 사용
     @Column(name="post_createdAt")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime postCreatedAt;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
