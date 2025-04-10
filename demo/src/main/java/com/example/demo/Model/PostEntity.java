@@ -23,7 +23,7 @@ public class PostEntity {
     @Id
     @Column(name="post_code")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long postCode;
+    private Long postCode;
 
     @Column(name="page_id")
     private String pageId;

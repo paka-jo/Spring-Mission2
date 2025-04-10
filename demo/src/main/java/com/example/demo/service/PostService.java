@@ -7,6 +7,8 @@ import com.example.demo.repository.CommentRepository;
 import com.example.demo.repository.PostRepository;
 import org.modelmapper.ModelMapper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,9 +17,11 @@ import java.util.stream.Collectors;
 
 @Service("postServiceField")
 public class PostService {
+
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
     private final ModelMapper modelMapper;
+    private static final Logger logger = LoggerFactory.getLogger(PostService.class);
     ;
 
     public PostService(PostRepository postRepository, CommentRepository commentRepository, ModelMapper modelMapper) {
@@ -34,12 +38,13 @@ public class PostService {
 
 
     public List<PostDTO> findAllPost() {
-
+        logger.info("findAllPost() 호출");
         List<PostEntity> postList = postRepository.findAll();
-
-        return postList.stream()
+        List<PostDTO> postDTOList = postList.stream()
                 .map(post -> modelMapper.map(post, PostDTO.class))
                 .collect(Collectors.toList());
+        logger.info("findAllPost() 반환: {}", postDTOList);
+        return postDTOList;
     }
 
     //리다이렉트 할때 게시판 목록에 필요한 정보들에 대해서만 불러오기 위한 메소드

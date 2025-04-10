@@ -59,8 +59,8 @@ public class PostController {
         }
     }
 
-    @GetMapping("/detail/{id}")
-    public String findPostbyId(@PathVariable("id") Long id, Model model) {
+    @GetMapping("/detail/{id}") //작성한 글 조회
+    public String findPostById(@PathVariable("id") Long id, Model model) {
         try {
             PostDTO post = postService.findPostById(id);
             model.addAttribute("post", post);
@@ -71,6 +71,7 @@ public class PostController {
             return "error";
         }
     }
+
 }
 
 
